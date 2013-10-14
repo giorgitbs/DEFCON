@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="javascript">
+	function startUpdate()
+		{
+		updateCode();
+		setInterval(updateCode,60000);
+		}
+	function updateCode()
+		{
+		var xmlHttp = null;
+		var theUrl = "http://www.defconwarningsystem.com/code.dat";
+		var img;
+		xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function (oEvent) {  
+    if (xmlHttp.readyState === 4) {  
+        if (xmlHttp.status === 200) {  
+		  img = "img/"+xmlHttp.responseText+".png";
+          document.getElementById("imgCode").src = img;  
+    } else {  
+		  document.getElementById("imgCode").src = "img/ce.png";    }  
+  }  
+};  
+		xmlHttp.open( "GET", theUrl, false );
+		xmlHttp.send( null );
+		}
+</script>
+
+<title></title>
+<style type="text/css">
+body {
+	background-color: #000;
+}
+</style>
+</head>
+
+<body onload="startUpdate();">
+<div style="text-align: center;">
+<p><a href="http://www.defconwarningsystem.com/"><img src="img/logo.JPG" width="320" height="240" /></a></p>
+<p><img id="imgCode" src="img/ce.png" width="120" height="120" /></p>
+</div>
+<script type="text/javascript" src="phonegap.js"></script>
+</body>
+</html>
